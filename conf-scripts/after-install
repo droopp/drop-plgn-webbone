@@ -1,0 +1,10 @@
+#!/bin/sh
+# Don't change this file
+# Its generate automatically
+
+useradd drop-core
+chown -R drop-core:drop-core /opt/drop-plgn-webbone
+
+cp /opt/drop-plgn-webbone/conf/webbone.service /etc/systemd/system/ && systemctl daemon-reload
+systemctl enable webbone
+

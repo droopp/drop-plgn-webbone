@@ -1,0 +1,5 @@
+#!/bin/bash
+
+VIP=$(grep "listen drop" /etc/haproxy/haproxy.cfg |awk '{print substr($3, 0, length($3)-5)}')
+
+docker run --rm -it -u root -w /home/drop-core/ -p 8082:8082 -v /var/lib/drop:/var/lib/drop -m 100m -e HOSTNAME=$VIP webbone:0.1.0 ./start

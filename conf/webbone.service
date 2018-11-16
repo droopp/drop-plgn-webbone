@@ -1,0 +1,19 @@
+[Unit]
+Description=DROP Admin panel
+
+[Service]
+Type=simple
+
+User=drop-core
+Group=drop-core
+
+WorkingDirectory=/opt/drop-plgn-webbone
+ExecStart=/opt/drop-plgn-webbone/start
+ExecStop=
+KillMode=process
+KillSignal=SIGKILL
+
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
