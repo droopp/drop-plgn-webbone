@@ -9,7 +9,7 @@ Group=drop-core
 
 WorkingDirectory=/opt/drop-plgn-webbone
 ExecStart=/opt/drop-plgn-webbone/start
-ExecStop=
+ExecStop=/opt/drop-plgn-webbone/stop
 KillMode=process
 KillSignal=SIGKILL
 
