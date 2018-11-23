@@ -10,6 +10,8 @@ RUN git clone https://github.com/droopp/webbone.git /home/drop-core/
 RUN rm -rf /etc/nginx/conf.d/*
 RUN rm -rf /home/drop-core/.git
 
+RUN chown -R drop-core:drop-core /home/drop-core/*
+
 COPY ./nginx.conf /etc/nginx/
 COPY ./webbone.conf /etc/nginx/conf.d/
 COPY ./start /home/drop-core/
