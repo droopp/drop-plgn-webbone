@@ -8,6 +8,7 @@ RUN useradd drop-core
 
 RUN git clone https://github.com/droopp/webbone.git /home/drop-core/
 RUN rm -rf /etc/nginx/conf.d/*
+RUN rm -rf /home/drop-core/.git
 
 COPY ./nginx.conf /etc/nginx/
 COPY ./webbone.conf /etc/nginx/conf.d/

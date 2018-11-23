@@ -17,8 +17,8 @@ export FLOWS_DIR=/var/lib/drop/flows
 
 # HOSTNAME=$(grep "listen drop" /etc/haproxy/haproxy.cfg |awk '{print substr($3, 0, length($3)-5)}')
 
-sed -i "/urlDb:/c\ urlDb:'http://"$HOSTNAME":8084'," js/json2db.js
-sed -i "/urlMongo:/c\ urlMongo:'http://"$HOSTNAME":8084'" js/json2db.js
+sed -i -- 's/localhost:8080/'$HOSTNAME':8084/g' js/json2db.js
+sed -i -- 's/localhost:8080/'$HOSTNAME':8084/g' js/compress/all.js
 
 # Start the second process
 
