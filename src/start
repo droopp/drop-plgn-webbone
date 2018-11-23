@@ -21,9 +21,7 @@ sed -i -- 's/localhost:8080/'$HOSTNAME':8084/g' js/json2db.js
 sed -i -- 's/localhost:8080/'$HOSTNAME':8084/g' js/compress/all.js
 
 # Start the second process
-
-cd ./tools
-(su - drop-core -c 'DB_NAME='$DB_NAME' FLOWS_DIR='$FLOWS_DIR' exec python '$(pwd)'/serv.py' > /dev/stderr 2>&1 &)
+(su - drop-core -c 'cd '$(pwd)'/tools && DB_NAME='$DB_NAME' FLOWS_DIR='$FLOWS_DIR' exec python ./serv.py' > /dev/stderr 2>&1 &)
 
 status=$?
 if [ $status -ne 0 ]; then
