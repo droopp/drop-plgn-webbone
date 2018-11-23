@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ps -aux|grep nginx|awk '{print $2}'|xargs kill -9
-ps -aux|grep "python serv.py"|awk '{print $2}'|xargs kill -9
+ps -aux|grep "serv.py"|awk '{print $2}'|xargs kill -9
 
 # Start the first process
 
@@ -22,7 +22,8 @@ sed -i -- 's/localhost:8080/'$HOSTNAME':8084/g' js/compress/all.js
 
 # Start the second process
 
-cd ./tools && (exec python serv.py > /dev/stderr 2>&1 &)
+cd ./tools
+(su - drop-core -c \'DB_NAME=$DB_NAME FLOWS_DIR=$FLOWS_DIR exec python \'$(pwd)\'/serv.py > /dev/stderr 2>&1 &)
 status=$?
 if [ $status -ne 0 ]; then
   echo "Failed to start webbone: $status"
@@ -38,7 +39,7 @@ fi
 while /bin/true; do
   ps aux |grep nginx |grep -q -v grep
   PROCESS_1_STATUS=$?
-  ps aux |grep "python serv.py" |grep -q -v grep
+  ps aux |grep "serv.py" |grep -q -v grep
   PROCESS_2_STATUS=$?
 
   # echo $PROCESS_1_STATUS
