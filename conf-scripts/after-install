@@ -2,9 +2,13 @@
 # Don't change this file
 # Its generate automatically
 
+NAME=webbone:0.1.0
+
 useradd drop-core
 chown -R drop-core:drop-core /opt/drop-plgn-webbone
 
 cp /opt/drop-plgn-webbone/conf/webbone.service /etc/systemd/system/ && systemctl daemon-reload
 systemctl enable webbone
 
+docker pull $DROP_DOCKER_REGISTRY/$NAME
+docker tag $DROP_DOCKER_REGISTRY/$NAME $NAME
