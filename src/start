@@ -13,7 +13,7 @@ if [ $status -ne 0 ]; then
 fi
 
 export DB_NAME=/var/lib/drop/db/node_collector.db
-export FLOWS_DIR=/var/lib/drop/flows
+export DROP_DIR=/var/lib/drop
 
 # HOSTNAME=$(grep "listen drop" /etc/haproxy/haproxy.cfg |awk '{print substr($3, 0, length($3)-5)}')
 
@@ -21,7 +21,7 @@ sed -i -- 's/localhost:8080/'$HOSTNAME':8084/g' js/json2db.js
 sed -i -- 's/localhost:8080/'$HOSTNAME':8084/g' js/compress/all.js
 
 # Start the second process
-(su - drop-core -c 'cd '$(pwd)'/tools && DB_NAME='$DB_NAME' FLOWS_DIR='$FLOWS_DIR' exec python ./serv.py' > /dev/stderr 2>&1 &)
+(su - drop-core -c 'cd '$(pwd)'/tools && DB_NAME='$DB_NAME' DROP_DIR='$DROP_DIR' exec python ./serv.py' > /dev/stderr 2>&1 &)
 
 status=$?
 if [ $status -ne 0 ]; then

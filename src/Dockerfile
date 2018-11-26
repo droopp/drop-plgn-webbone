@@ -1,8 +1,8 @@
 
 FROM ubuntu:16.04
 
-RUN apt-get update && apt-get -y install python python-pip git nginx
-RUN pip install flask flask-JWT lxml
+RUN apt-get update && apt-get -y install python python-pip git nginx librrd-dev
+RUN pip install flask flask-JWT lxml rrdtool
 
 RUN useradd drop-core
 
