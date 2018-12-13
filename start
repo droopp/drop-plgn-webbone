@@ -1,6 +1,13 @@
 #!/bin/bash
 
-VIP_IFACE="$(/usr/sbin/route |grep default |head -1|awk '{print $8}')"
-VIP="$(/usr/sbin/ifconfig $VIP_IFACE:0 | grep 'inet '| awk '{ print $2}')"
+source ~/.bashrc
+
+if [ "x" != "x$DROP_AWS_EIP" ] 
+then
+    VIP=$DROP_AWS_EIP
+else
+    VIP_IFACE="$(/usr/sbin/route |grep default |head -1|awk '{print $8}')"
+    VIP="$(/usr/sbin/ifconfig $VIP_IFACE:0 | grep 'inet '| awk '{ print $2}')"
+fi
 
 docker run --rm -i --name webbone --privileged -u root -w /home/drop-core/ --net=host -v /var/lib/drop:/var/lib/drop -m 100m -e HOSTNAME=$VIP webbone:0.1.0 ./start
