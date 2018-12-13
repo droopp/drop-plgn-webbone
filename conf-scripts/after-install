@@ -2,6 +2,8 @@
 # Don't change this file
 # Its generate automatically
 
+source ~/.bashrc
+
 NAME=webbone:0.1.0
 
 useradd drop-core
