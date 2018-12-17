@@ -17,6 +17,8 @@ export DROP_DIR=/var/lib/drop
 
 # HOSTNAME=$(grep "listen drop" /etc/haproxy/haproxy.cfg |awk '{print substr($3, 0, length($3)-5)}')
 
+sed -i -- 's/1000:1000:/'$HUID':'$HUID':/g' /etc/passwd
+
 sed -i -- 's/localhost:8080/'$HOSTNAME':8084/g' js/json2db.js
 sed -i -- 's/localhost:8080/'$HOSTNAME':8084/g' js/compress/all.js
 
