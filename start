@@ -10,4 +10,6 @@ else
     VIP="$(/usr/sbin/ifconfig $VIP_IFACE:0 | grep 'inet '| awk '{ print $2}')"
 fi
 
-docker run --rm -i --name webbone --privileged -u root -w /home/drop-core/ --net=host -v /var/lib/drop:/var/lib/drop -m 100m -e HOSTNAME=$VIP webbone:0.1.0 ./start
+HUID=$(id -u drop-core)
+
+docker run --rm -i --name webbone --privileged -u root -w /home/drop-core/ --net=host -v /var/lib/drop:/var/lib/drop -m 100m -e HOSTNAME=$VIP -e HUID=$HUID webbone:0.1.0 ./start
