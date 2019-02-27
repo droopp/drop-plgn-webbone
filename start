@@ -2,11 +2,19 @@
 
 source ~/.bashrc
 
+
 if [ "x" != "x$DROP_AWS_EIP" ] 
 then
     VIP=$DROP_AWS_EIP
 else
-    VIP_IFACE="$(/usr/sbin/route |grep default |head -1|awk '{print $8}')"
+
+    if [ "x" == "x$DROP_IFACE" ]                                                    
+    then                                                                            
+        VIP_IFACE="$(/usr/sbin/route |grep default |head -1|awk '{print $8}')" 
+    else                                                                            
+        VIP_IFACE=$DROP_IFACE
+    fi                                                                              
+
     VIP="$(/usr/sbin/ifconfig $VIP_IFACE:0 | grep 'inet '| awk '{ print $2}')"
 fi
 
