@@ -16,6 +16,13 @@ else
     fi                                                                              
 
     VIP="$(/usr/sbin/ifconfig $VIP_IFACE:0 | grep 'inet '| awk '{ print $2}')"
+
+    if [ "x" == "x$VIP" ]
+    then
+        sleep 10
+        exit 0
+    fi        
+
 fi
 
 HUID=$(id -u drop-core)
