@@ -7,6 +7,8 @@ Type=simple
 User=drop-core
 Group=drop-core
 
+EnvironmentFile=/etc/drop-env
+
 WorkingDirectory=/opt/drop-plgn-webbone
 ExecStart=/opt/drop-plgn-webbone/start
 ExecStop=/opt/drop-plgn-webbone/stop

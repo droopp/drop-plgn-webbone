@@ -10,12 +10,12 @@ else
 
     if [ "x" == "x$DROP_IFACE" ]                                                    
     then                                                                            
-        VIP_IFACE="$(/usr/sbin/route |grep default |head -1|awk '{print $8}')" 
+        VIP_IFACE="$(/sbin/route |grep default |head -1|awk '{print $8}')" 
     else                                                                            
         VIP_IFACE=$DROP_IFACE
     fi                                                                              
 
-    VIP="$(/usr/sbin/ifconfig $VIP_IFACE:0 | grep 'inet '| awk '{ print $2}')"
+    VIP="$(/sbin/ifconfig $VIP_IFACE:0 | grep 'inet '| awk '{ print $2}')"
 
     if [ "x" == "x$VIP" ]
     then
